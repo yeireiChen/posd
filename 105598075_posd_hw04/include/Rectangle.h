@@ -1,0 +1,27 @@
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
+
+
+#include "Shape.h"
+
+class Rectangle:public Shape
+{
+    public:
+        Rectangle(double,double,double,double);
+        ~Rectangle();
+
+        std::string shapeName;
+
+        double area() const;
+        double perimeter() const;
+        void showArea() const;
+        void showPerimeter() const;
+        std::string getShapeN() const;
+
+    protected:
+
+    private:
+        double x,y,l,w;
+};
+
+#endif // RECTANGLE_H

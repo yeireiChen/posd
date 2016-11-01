@@ -1,0 +1,130 @@
+# depslib dependency file v1.0
+1477993543 source:d:\c++\105598075_posd_hw04\main.cpp
+	".\cppunitlite\TestHarness.h"
+	"utShapes.h"
+	"Circle.h"
+	<vector>
+	<algorithm>
+
+1474266801 d:\c++\105598075_posd_hw04\cppunitlite\testharness.h
+	"Test.h"
+	"TestResult.h"
+	"Failure.h"
+	"TestRegistry.h"
+
+1474266801 d:\c++\105598075_posd_hw04\cppunitlite\test.h
+	<cmath>
+	"SimpleString.h"
+
+1474266801 d:\c++\105598075_posd_hw04\cppunitlite\simplestring.h
+
+1474266801 d:\c++\105598075_posd_hw04\cppunitlite\testresult.h
+
+1474266801 d:\c++\105598075_posd_hw04\cppunitlite\failure.h
+	"SimpleString.h"
+
+1474266801 d:\c++\105598075_posd_hw04\cppunitlite\testregistry.h
+
+1478005356 d:\c++\105598075_posd_hw04\include\utshapes.h
+	"..\cppunitlite\TestHarness.h"
+	"Circle.h"
+	"Rectangle.h"
+	"Triangle.h"
+	"combShape.h"
+	"ShapeMedia.h"
+	"combMedia.h"
+	"AreaVisitor.h"
+	"PerimeterVisitor.h"
+	"ShapeMediaBuilder.h"
+	"ComboMediaBuilder.h"
+	<vector>
+	<iostream>
+
+1477994093 d:\c++\105598075_posd_hw04\include\circle.h
+	<Shape.h>
+
+1477993264 d:\c++\105598075_posd_hw04\include\shape.h
+	<iostream>
+	<vector>
+	<algorithm>
+	<cmath>
+
+1477993264 d:\c++\105598075_posd_hw04\include\rectangle.h
+	"Shape.h"
+
+1477993264 d:\c++\105598075_posd_hw04\include\triangle.h
+	"Shape.h"
+
+1477994164 d:\c++\105598075_posd_hw04\include\combshape.h
+	"Shape.h"
+	<vector>
+
+1477993478 d:\c++\105598075_posd_hw04\include\shapemedia.h
+	"Media.h"
+	"Shape.h"
+
+1477993478 d:\c++\105598075_posd_hw04\include\media.h
+	<iostream>
+	"MediaVisitor.h"
+
+1477993543 d:\c++\105598075_posd_hw04\include\mediavisitor.h
+
+1477993478 d:\c++\105598075_posd_hw04\include\combmedia.h
+	<vector>
+	"Media.h"
+
+1477993264 source:d:\c++\105598075_posd_hw04\src\circle.cpp
+	"Circle.h"
+
+1477993478 source:d:\c++\105598075_posd_hw04\src\combmedia.cpp
+	"combMedia.h"
+	<vector>
+
+1477994008 source:d:\c++\105598075_posd_hw04\src\combshape.cpp
+	"combShape.h"
+
+1477993478 source:d:\c++\105598075_posd_hw04\src\rectangle.cpp
+	"Rectangle.h"
+	<iostream>
+
+1477993478 source:d:\c++\105598075_posd_hw04\src\shapemedia.cpp
+	"ShapeMedia.h"
+
+1477993264 source:d:\c++\105598075_posd_hw04\src\triangle.cpp
+	"Triangle.h"
+	<iostream>
+
+1477994313 d:\c++\105598075_posd_hw04\include\areavisitor.h
+	"MediaVisitor.h"
+	"ShapeMedia.h"
+	"combMedia.h"
+
+1477994390 d:\c++\105598075_posd_hw04\include\perimetervisitor.h
+	"MediaVisitor.h"
+	"ShapeMedia.h"
+	"combMedia.h"
+
+1477994313 source:d:\c++\105598075_posd_hw04\src\perimetervisitor.cpp
+	"PerimeterVisitor.h"
+
+1477994427 source:d:\c++\105598075_posd_hw04\src\areavisitor.cpp
+	"AreaVisitor.h"
+
+1478002507 d:\c++\105598075_posd_hw04\include\shapemediabuilder.h
+	<MediaBuilder.h>
+
+1478000860 d:\c++\105598075_posd_hw04\include\mediabuilder.h
+	<Shape.h>
+	<ShapeMedia.h>
+	<combMedia.h>
+
+1478002507 source:d:\c++\105598075_posd_hw04\src\shapemediabuilder.cpp
+	"ShapeMediaBuilder.h"
+
+1478004549 d:\c++\105598075_posd_hw04\include\combomediabuilder.h
+	<MediaBuilder.h>
+	<combMedia.h>
+
+1478004288 source:d:\c++\105598075_posd_hw04\src\combomediabuilder.cpp
+	"ComboMediaBuilder.h"
+
