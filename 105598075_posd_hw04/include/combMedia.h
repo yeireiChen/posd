@@ -14,6 +14,7 @@ class combMedia:public Media
         double perimeter() const;
         void accept(MediaVisitor*);
         void add(Media*);
+        void removeMedia(Media*)const;
 
     protected:
 

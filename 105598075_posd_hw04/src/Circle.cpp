@@ -7,3 +7,10 @@ Circle::~Circle(){}
 double Circle::area() const{return pi*r*r;}
 double Circle::perimeter() const {return 2*r*pi;}
 string Circle::getShapeN() const {return shapeName;}
+string Circle::getDec() const{
+
+    stringstream ss;
+    ss << "c(" << cx << " " << cy << " " << r << ") ";
+
+    return ss.str();
+}

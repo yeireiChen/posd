@@ -19,6 +19,7 @@ class combShape:public Shape
 
         void add(Shape *);
         void add(std::vector <Shape *>);
+        std::string getDec() const;
 
         std::vector<Shape*> getVector() const;
 

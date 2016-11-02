@@ -10,7 +10,7 @@ void AreaVisitor::visitShapeMedia(ShapeMedia* visit){
     area += visit->getShape()->area();
 }
 
-void AreaVisitor::visitCombMedia(combMedia* visit){
+void AreaVisitor::visitCombMedia(combMedia* visit,bool s){
 
 }
 

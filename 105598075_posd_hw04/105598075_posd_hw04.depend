@@ -128,3 +128,174 @@
 1478004288 source:d:\c++\105598075_posd_hw04\src\combomediabuilder.cpp
 	"ComboMediaBuilder.h"
 
+1477993543 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\main.cpp
+	".\cppunitlite\TestHarness.h"
+	"utShapes.h"
+	"Circle.h"
+	<vector>
+	<algorithm>
+
+1474266801 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\cppunitlite\testharness.h
+	"Test.h"
+	"TestResult.h"
+	"Failure.h"
+	"TestRegistry.h"
+
+1474266801 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\cppunitlite\test.h
+	<cmath>
+	"SimpleString.h"
+
+1474266801 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\cppunitlite\simplestring.h
+
+1474266801 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\cppunitlite\testresult.h
+
+1474266801 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\cppunitlite\failure.h
+	"SimpleString.h"
+
+1474266801 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\cppunitlite\testregistry.h
+
+1478099470 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\utshapes.h
+	"..\cppunitlite\TestHarness.h"
+	"Circle.h"
+	"Rectangle.h"
+	"Triangle.h"
+	"combShape.h"
+	"ShapeMedia.h"
+	"combMedia.h"
+	"AreaVisitor.h"
+	"PerimeterVisitor.h"
+	"ShapeMediaBuilder.h"
+	"combMediaBuilder.h"
+	"descriptionVisitor.h"
+	"Text.h"
+	"TextMedia.h"
+	<vector>
+	<iostream>
+
+1478059929 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\circle.h
+	<Shape.h>
+	<sstream>
+
+1478064246 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\shape.h
+	<iostream>
+	<vector>
+	<algorithm>
+	<cmath>
+
+1478061794 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\rectangle.h
+	"Shape.h"
+	<sstream>
+
+1478061894 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\triangle.h
+	"Shape.h"
+	<sstream>
+
+1478063465 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\combshape.h
+	"Shape.h"
+	<vector>
+
+1477993478 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\shapemedia.h
+	"Media.h"
+	"Shape.h"
+
+1478088098 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\media.h
+	<iostream>
+	"MediaVisitor.h"
+
+1478069950 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\mediavisitor.h
+
+1478083844 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\combmedia.h
+	<vector>
+	"Media.h"
+
+1478069950 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\areavisitor.h
+	"MediaVisitor.h"
+	"ShapeMedia.h"
+	"combMedia.h"
+
+1478070006 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\perimetervisitor.h
+	"MediaVisitor.h"
+	"ShapeMedia.h"
+	"combMedia.h"
+
+1478002507 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\shapemediabuilder.h
+	<MediaBuilder.h>
+
+1478000860 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\mediabuilder.h
+	<Shape.h>
+	<ShapeMedia.h>
+	<combMedia.h>
+
+1478004549 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\combomediabuilder.h
+	<MediaBuilder.h>
+	<combMedia.h>
+
+1478070006 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\areavisitor.cpp
+	"AreaVisitor.h"
+
+1478099272 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\combmedia.cpp
+	"combMedia.h"
+	<vector>
+	"DescriptionVisitor.h"
+	"traceVisitor.h"
+
+1478063465 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\combshape.cpp
+	"combShape.h"
+
+1478070006 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\perimetervisitor.cpp
+	"PerimeterVisitor.h"
+
+1478061380 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\rectangle.cpp
+	"Rectangle.h"
+	<iostream>
+
+1477993478 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\shapemedia.cpp
+	"ShapeMedia.h"
+
+1478002507 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\shapemediabuilder.cpp
+	"ShapeMediaBuilder.h"
+
+1478070061 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\triangle.cpp
+	"Triangle.h"
+	<iostream>
+
+1478061744 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\circle.cpp
+	"Circle.h"
+
+1478094336 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\combmediabuilder.cpp
+	"combMediaBuilder.h"
+	"ComboMediaBuilder.h"
+
+1478094336 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\combmediabuilder.h
+	<MediaBuilder.h>
+	<combMedia.h>
+
+1478092156 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\descriptionvisitor.cpp
+	"DescriptionVisitor.h"
+
+1478091293 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\descriptionvisitor.h
+	"MediaVisitor.h"
+	"ShapeMedia.h"
+	"combMedia.h"
+
+1478091535 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\text.h
+	"Rectangle.h"
+
+1478091579 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\text.cpp
+	"Text.h"
+
+1478091761 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\textmedia.h
+	"Media.h"
+	"Text.h"
+
+1478091889 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\textmedia.cpp
+	"textMedia.h"
+
+1478096212 source:c:\users\randy2004\documents\github\posd\105598075_posd_hw04\src\tracevisitor.cpp
+	"traceVisitor.h"
+
+1478092715 c:\users\randy2004\documents\github\posd\105598075_posd_hw04\include\tracevisitor.h
+	"MediaVisitor.h"
+	"ShapeMedia.h"
+	"combMedia.h"
+

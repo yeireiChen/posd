@@ -11,7 +11,10 @@
 #include "AreaVisitor.h"
 #include "PerimeterVisitor.h"
 #include "ShapeMediaBuilder.h"
-#include "ComboMediaBuilder.h"
+#include "combMediaBuilder.h"
+#include "descriptionVisitor.h"
+#include "Text.h"
+#include "TextMedia.h"
 
 #include <vector>
 #include <iostream>
@@ -291,45 +294,101 @@ TEST(twelve,shapeMediaBuilder){
 }
 
 
-TEST(thirteen,combMediaBuilder1){
+TEST(thirteen,dedcriptionVisitor){
 
-    ComboMediaBuilder cb;
-    cb.buildComboMedia();
 
+
+    combMediaBuilder cb1;
+    cb1.buildComboMedia();
+
+    combMediaBuilder cb2;
+    cb2.buildComboMedia();
+
+    combMediaBuilder cb3;
+    cb3.buildComboMedia();
+
+
+    Rectangle r1(10,0,15,5);
     Circle c1(12,5,2);
-    Rectangle r1(0,20,25,20);
-    Rectangle r2(10,15,5,15);
+    Rectangle r2(0,0,25,20);
     Triangle t1(0,20,16,32,25,20);
 
-    cb.buildShapeMedia(&c1);
-    cb.buildShapeMedia(&r1);
-    cb.buildShapeMedia(&r2);
-    cb.buildShapeMedia(&t1);
+    cb1.buildShapeMedia(&r1);
+    cb1.buildShapeMedia(&c1);
+
+
+    cb2.buildAddComboMedia(cb1.getMedia());
+    cb2.buildShapeMedia(&r2);
+
+    cb3.buildAddComboMedia(cb2.getMedia());
+    cb3.buildShapeMedia(&t1);
+
+
 
     AreaVisitor v1;
-    cb.getMedia()->accept(&v1);
+    cb3.getMedia()->accept(&v1);
 
     //std::cout << v1.getArea() <<std::endl;
 
-    DOUBLES_EQUAL(737,v1.getArea(),epsilon);   //area is 737
+    DescriptionVisitor dv;
+    cb3.getMedia()->accept(&dv);
 
+    //std::cout << dv.getDescription() <<std::endl;
+    //std::cout << "combo(combo(combo(r(10 0 15 5) c(12 5 2) )r(0 0 25 20) )t(0 20 16 32 25 20) )" <<std::endl;
+
+    //DOUBLES_EQUAL(737,v1.getArea(),epsilon);
+    CHECK(std::string("combo(combo(combo(r(10 0 15 5) c(12 5 2) )r(0 0 25 20) )t(0 20 16 32 25 20) )") == dv.getDescription());
 }
 
-TEST(thirteen,combMediaBuilder2){
+TEST(fourteen,text){
 
-    ComboMediaBuilder cb;
-    cb.buildComboMedia();
 
+    Rectangle r2(0,0,25,20);
+    Text t(&r2,"TEST");
+
+    //std::cout << t.getInformation() <<std::endl;
+
+    textMedia textm(&t);
+    CHECK(std::string("TEST") == textm.getText()->getInformation());
+}
+
+TEST(fifteen,removes){  //for test__
+
+
+    combMediaBuilder cb1;
+    cb1.buildComboMedia();
+
+    combMediaBuilder cb2;
+    cb2.buildComboMedia();
+
+    combMediaBuilder cb3;
+    cb3.buildComboMedia();
+
+
+    Rectangle r1(10,0,15,5);
     Circle c1(12,5,2);
-    Rectangle r1(0,20,25,20);
-    Rectangle r2(10,15,5,15);
+    Rectangle r2(0,0,25,20);
     Triangle t1(0,20,16,32,25,20);
 
-    cb.buildShapeMedia(&c1);
-    cb.buildShapeMedia(&r1);
-    cb.buildShapeMedia(&r2);
-    cb.buildShapeMedia(&t1);
+    cb1.buildShapeMedia(&r1);
+    cb1.buildShapeMedia(&c1);
 
+
+    cb2.buildAddComboMedia(cb1.getMedia());
+    cb2.buildShapeMedia(&r2);
+
+    cb3.buildAddComboMedia(cb2.getMedia());
+    cb3.buildShapeMedia(&t1);
+
+
+    //Circle c1(12,5,2);
+    Circle test(12,5,5);
+    ShapeMediaBuilder sb;
+    sb.buildShapeMedia(&c1);
+    cb3.getMedia()->removeMedia(sb.getMedia());
+    //cb3.getMedia()->accept(&dv);
 
 }
+
+
 #endif // UTSHAPES_H_INCLUDED

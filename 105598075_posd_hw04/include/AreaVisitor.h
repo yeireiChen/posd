@@ -13,7 +13,7 @@ class AreaVisitor:public MediaVisitor
         virtual ~AreaVisitor();
 
         void visitShapeMedia(ShapeMedia*);
-        void visitCombMedia(combMedia*);
+        void visitCombMedia(combMedia*,bool);
 
         double getArea() const;
 

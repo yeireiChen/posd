@@ -2,6 +2,7 @@
 #define TRIANGLE_H
 
 #include "Shape.h"
+#include <sstream>
 
 class Triangle :public Shape
 {
@@ -16,6 +17,7 @@ class Triangle :public Shape
         void showArea() const;
         void showPerimeter() const;
         std::string getShapeN() const;
+        std::string getDec() const;
 
         bool getSuccess() const;
 

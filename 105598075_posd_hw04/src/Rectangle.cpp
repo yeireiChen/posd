@@ -25,3 +25,11 @@ void Rectangle::showArea()const{
 void Rectangle::showPerimeter()const{
     cout<< "Rectangle Perimeter is " << 2*(l+w) <<endl;
 }
+
+std::string Rectangle::getDec()const{
+
+    stringstream ss;
+    ss << "r(" << x << " " << y << " " << l << " " << w << ") ";
+
+    return ss.str();
+}

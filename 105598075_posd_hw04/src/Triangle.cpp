@@ -74,3 +74,12 @@ void Triangle::showPerimeter()const{
 }
 
 string Triangle::getShapeN() const {return shapeName;}
+
+string Triangle::getDec() const {
+
+    stringstream ss;
+    //ss << "r(" << x << " " << y << " " << l << " " << w << ") ";
+    ss << "t(" << fx << " " << fy << " " << sx << " " << sy << " " << tx << " " << ty << ") ";
+
+    return ss.str();
+}

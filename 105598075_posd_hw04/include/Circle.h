@@ -1,6 +1,7 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 #include <Shape.h>
+#include <sstream>
 
 class Circle:public Shape
 {
@@ -13,6 +14,7 @@ class Circle:public Shape
         double area() const;
         double perimeter() const;
         std::string getShapeN() const;
+        std::string getDec() const;
     protected:
 
     private:

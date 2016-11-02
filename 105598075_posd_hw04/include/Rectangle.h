@@ -3,6 +3,7 @@
 
 
 #include "Shape.h"
+#include <sstream>
 
 class Rectangle:public Shape
 {
@@ -16,6 +17,7 @@ class Rectangle:public Shape
         double perimeter() const;
         void showArea() const;
         void showPerimeter() const;
+        std::string getDec() const;
         std::string getShapeN() const;
 
     protected:

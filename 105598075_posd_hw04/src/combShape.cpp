@@ -42,3 +42,7 @@ void combShape::add(vector<Shape*> ss){
     for(Shape* t :ss)
         component.push_back(t);
 }
+
+std::string combShape::getDec() const{
+    return "";
+}

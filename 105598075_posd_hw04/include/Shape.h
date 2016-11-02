@@ -12,8 +12,9 @@ public:
     virtual std::string getShapeN() const =0;
     virtual double area() const = 0;
     virtual double perimeter() const =0;
-    virtual void showArea() const{}
-    virtual void showPerimeter()const{}
+    //virtual void showArea() const{}
+    //virtual void showPerimeter()const{}
+    virtual std::string getDec() const=0;
 };
 
 

@@ -10,7 +10,7 @@ void PerimeterVisitor::visitShapeMedia(ShapeMedia* visit){
     perimeter += visit->getShape()->perimeter();
 }
 
-void PerimeterVisitor::visitCombMedia(combMedia* visit){
+void PerimeterVisitor::visitCombMedia(combMedia* visit,bool s){
 
 }
 
