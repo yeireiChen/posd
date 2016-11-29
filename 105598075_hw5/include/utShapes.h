@@ -16,11 +16,11 @@
 #include "Text.h"
 #include "TextMedia.h"
 #include "Mydocument.h"
+#include "MediaDirector.h"
 
 #include <vector>
 #include <iostream>
-#include <stdio.h>
-#include <string.h>
+
 const double epsilon = 0.01;
 // added this line
 
@@ -397,13 +397,14 @@ TEST(fifteen,removes){  //for test__
 
 TEST(sixteen,template1){
 
-    Mydocument my;
+    //Mydocument my= new Mydocument();
+    Document *dc = new Mydocument();
 
     try{
         //std::string s = my.openDocument("myShape.txt");
         //std::cout << s <<std::endl;
 
-        CHECK(std::string("combo(r(0 0 3 2) c(0 0 5) combo(r(0 0 5 4) c(0 0 10) )combo(r(0 1 8 7) c(0 1 10)))") == my.openDocument("myShape.txt"));
+        CHECK(std::string("combo(r(0 0 3 2) c(0 0 5) combo(r(0 0 5 4) c(0 0 10) )combo(r(0 1 8 7) c(0 1 10) ))") == dc->openDocument("myShape.txt"));
     }catch(std::string name){
         std::cout << name <<std::endl;
     }
@@ -411,54 +412,20 @@ TEST(sixteen,template1){
 }
 
 #include <stack>
-TEST(seventeen,director){
-
+TEST(seventeen,director)
+{
     Mydocument my;
-    std::string test = my.openDocument("myShape.txt");
-    //std::cout << test <<std::endl;
+    std::string original = my.openDocument("myShape.txt");
+    std::cout << original <<std::endl;
 
-    char tab2[1024];
-    strcpy(tab2, test.c_str());
-    std::string temp;
-    /*
-    for(int i=0;i<strlen(tab2);i++){
-        std::cout << tab2[i] <<std::endl;
-    }
-    std::cout << "11_____________________" <<std::endl;*/
-    //test every char
+    //std::stack<MediaBuilder*> *mb;
+    std::stack<MediaBuilder*> mb;
+    mb.push(new combMediaBuilder());
 
+    MediaDirector md;
+    md.setMediaBuilder(&mb);
+    md.concrete(original);
 
-    std::stack<std::string> botton;
-    std::string change;
-    for(int i=0;i<strlen(tab2);i++){
-        //std::cout << tab2[i] <<std::endl;
-
-        if (tab2[i]==' '&&tab2[i-1]==')')
-            continue;
-        else
-            temp+=tab2[i];
-
-
-        if (tab2[i]=='('){
-            //std::cout << "_______________________________" <<std::endl;
-            botton.push(temp);
-            temp.clear();
-        }
-        else if (tab2[i]==')'){
-            change=botton.top()+temp;
-            //temp+=botton.top();
-            //std::cout << "top is "+temp <<std::endl;
-            botton.pop();
-            botton.push(change);
-            temp.clear();
-        }
-
-    }
-
-    while(!botton.empty()){
-        std::cout << botton.top() <<std::endl;
-        botton.pop();
-    }
 }
 
 

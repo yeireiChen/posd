@@ -1,5 +1,6 @@
 #include "Mydocument.h"
 
+
 Mydocument::Mydocument(){}
 
 Mydocument::~Mydocument(){}

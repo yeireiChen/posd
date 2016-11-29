@@ -1,6 +1,5 @@
 #include "combMediaBuilder.h"
 
-#include "ComboMediaBuilder.h"
 
 combMediaBuilder::combMediaBuilder():combo(0){}
 
