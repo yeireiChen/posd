@@ -11,6 +11,8 @@ public:
     virtual void buildComboMedia()=0;
     virtual void buildShapeMedia(Shape*)=0;
     virtual Media* getMedia()=0;
+
+    virtual void buildAddComboMedia(Media*)=0;
 };
 
 #endif // MEDIABUILDER_H_INCLUDED

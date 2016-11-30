@@ -5,6 +5,10 @@
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Triangle.h"
+#include "combMediaBuilder.h"
+
+#include "MediaVisitor.h"
+#include "DescriptionVisitor.h"
 
 
 
@@ -16,6 +20,8 @@ MediaDirector::~MediaDirector(){}
 
 void MediaDirector::setMediaBuilder(std::stack<MediaBuilder*> *mbs){
 
+    mb=mbs;
+
 }
 void MediaDirector::concrete(std::string content){
 
@@ -23,20 +29,16 @@ void MediaDirector::concrete(std::string content){
     std::strcpy(tab2, content.c_str());
     /*for(int i=0;i<std::strlen(tab2);i++){ //show
         std::cout << tab2[i];
-    }
-    std::cout << "" <<std::endl;*/
+    }*/
 
     /****************************************************************************/
 
     std::string temp;
-    std::string temper;
     std::string change;
-    //std::stack<std::string> botton;
-    std::stack<std::string> sequence;
     std::vector<std::string> vsequence;
     /*************/
 
-    for(int i=0;i<strlen(tab2);i++){
+    for(int i=0;i<strlen(tab2);i++){    //split command
 
         if(tab2[i]==' ' && tab2[i-1]==')')
             continue;
@@ -45,78 +47,89 @@ void MediaDirector::concrete(std::string content){
 
 
         if (tab2[i]=='('){
-            //botton.push(temp);
             vsequence.push_back(temp);
             temp.clear();
         }
-        else if (tab2[i]==')' && tab2[i+1]==' '){
-            //change=botton.top()+temp;
-            //botton.pop();
-            //botton.push(change);
+        else if (tab2[i]==')' && tab2[i+1]==' '){ //tab2[i]==')' && tab2[i+1]==' '
             change = vsequence.back()+temp;
             vsequence.pop_back();
             vsequence.push_back(change);
             temp.clear();
         }
         else if(tab2[i]==')'){
-            //botton.push(temp);
             vsequence.push_back(temp);
             temp.clear();
         }
 
+
     }
 
 
-    std::cout << "_________________________________________________________" <<std::endl;
+    /*std::cout << "vsequence_________________________________________________________" <<std::endl;
 
-    for(int i=0;i<vsequence.size();i++){
-
-        if (i==0 || i==vsequence.size()-1){
-            //continue;
-            std::cout << vsequence.at(i)<<std::endl;
-        }
-        else{
-            std::cout << vsequence.at(i)<<std::endl;
-        }
+    for(int i=0;i<vsequence.size();i++){    //show
+       std::cout << vsequence.at(i)<<std::endl;
     }
-    std::cout << "111_________________________________________________________" <<std::endl;
+
+    std::cout << "_________________________________________________________" <<std::endl;*/
+
 
     std::vector<std::string> num2 ;
     int length;
     int ntemp=0;//delete
+    DescriptionVisitor t; //delete
 
     for(int i=0;i<vsequence.size();i++){
 
         if(vsequence.at(i).compare("combo(")==0){
-            if(i==0)
-                std::cout << i << " is "<< vsequence.at(i) <<std::endl;
-            else
-                std::cout << vsequence.at(i) <<std::endl;
+
+            mb->push(new combMediaBuilder());
+            mb->top()->buildComboMedia();
         }
         else if (vsequence.at(i).compare(")")==0){
-            if(i==vsequence.size()-1)
-                std::cout << i << " is "<< vsequence.at(i) <<std::endl;
-            else
-                std::cout << vsequence.at(i) <<std::endl;
+            if(i==vsequence.size()-1){  //final )
+                //std::cout << i << " is "<< vsequence.at(i) <<std::endl;
+            }
+            else{   //else comb('s --->)
+                //std::cout << vsequence.at(i) <<std::endl;
+
+                Media *s=mb->top()->getMedia();
+                mb->pop();
+                mb->top()->buildAddComboMedia(s);
+            }
         }
         else{
             length = vsequence.at(i).length();
             temp = vsequence.at(i).substr(2,length-3);  //split number
             //std::cout << "..."<<temp <<std::endl;
+            double a,b,c,d,e,f;
             std::stringstream ss(temp);//start
+            /*
             while (ss >> temp)
                 num2.push_back(temp);  //end to split white space_(10 0 2)->10,0,2
+            */
 
-            //ntemp+=atoi(num2.at(i).c_str());
-            if(vsequence.at(i).at(0)=='r'){
-                //std::cout << "r(" <<std::endl;
-                std::cout << "r(" <<num2.at(0)<<" "<<num2.at(1)<<" "<<num2.at(2)<<" "<<num2.at(3)<<")"<<std::endl;
-            }else if(vsequence.at(i).at(0)=='c'){
-                //std::cout << "c(" <<std::endl;
-                std::cout << "c(" <<num2.at(0)<<" "<<num2.at(1)<<" "<<num2.at(2)<<")"<<std::endl;
-            }else if (vsequence.at(i).at(0)=='t'){
-                //std::cout << "t(" <<std::endl;
-                std::cout << "t(" <<num2.at(0)<<" "<<num2.at(1)<<" "<<num2.at(2)<<" "<<num2.at(3)<<" "<<num2.at(4)<<" "<<num2.at(5)<<")"<<std::endl;
+            if(vsequence.at(i).at(0)=='r'){ //combMediaBuilder::buildShapeMedia(Shape* t)       Rectangle(double,double,double,double);
+                //std::cout << "r(" <<num2.at(0)<<" "<<num2.at(1)<<" "<<num2.at(2)<<" "<<num2.at(3)<<")"<<std::endl;
+                //Rectangle *r =new Rectangle(atof(num2.at(0).c_str()),atof(num2.at(1).c_str()),atof(num2.at(2).c_str()),atof(num2.at(3).c_str()));
+
+                ss >>a>>b>>c>>d;
+                Rectangle *rec =new Rectangle(a,b,c,d);
+                mb->top()->buildShapeMedia(rec);
+
+            }else if(vsequence.at(i).at(0)=='c'){   //Circle(double ,double ,double );
+                //std::cout << "c(" <<num2.at(0)<<" "<<num2.at(1)<<" "<<num2.at(2)<<")"<<std::endl;
+                //Circle* c=new Circle(atof(num2.at(0).c_str()),atof(num2.at(1).c_str()),atof(num2.at(2).c_str()));
+                ss >>a>>b>>c;
+                Circle *cir =new Circle(a,b,c);
+                mb->top()->buildShapeMedia(cir);
+
+            }else if (vsequence.at(i).at(0)=='t'){  //Triangle(double,double,double,double,double,double);
+                //Triangle* c=new Triangle(atof(num2.at(0).c_str()),atof(num2.at(1).c_str()),atof(num2.at(2).c_str()),atof(num2.at(3).c_str()),atof(num2.at(4).c_str()),atof(num2.at(5).c_str()));
+                ss >>a>>b>>c>>d>>e>>f;
+                Triangle *tri =new Triangle(a,b,c,d,e,f);
+                mb->top()->buildShapeMedia(tri);
+
 
             }
 
@@ -127,12 +140,6 @@ void MediaDirector::concrete(std::string content){
 
     }//end for
 
-    std::cout << "_________________________________________________________" <<std::endl;
-
-
-
-
-    std::cout << "_________________________________________________________" <<std::endl;
 
 }
 

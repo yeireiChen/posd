@@ -15,4 +15,6 @@ Media* ShapeMediaBuilder::getMedia(){
 
     return shapes;
 }
+void ShapeMediaBuilder::buildAddComboMedia(Media*){
+}
 

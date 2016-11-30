@@ -408,7 +408,6 @@ TEST(sixteen,template1){
     }catch(std::string name){
         std::cout << name <<std::endl;
     }
-    //CHECK(std::string("combo(r(0 0 3 2) c(0 0 5) combo(r(0 0 5 4) c(0 0 10) )combo(r(0 1 8 7) c(0 1 10)))") == my.openDocument("myShape.txt"));
 }
 
 #include <stack>
@@ -416,16 +415,41 @@ TEST(seventeen,director)
 {
     Mydocument my;
     std::string original = my.openDocument("myShape.txt");
-    std::cout << original <<std::endl;
+    //std::cout << original <<std::endl;
 
-    //std::stack<MediaBuilder*> *mb;
+
     std::stack<MediaBuilder*> mb;
-    mb.push(new combMediaBuilder());
-
     MediaDirector md;
     md.setMediaBuilder(&mb);
     md.concrete(original);
 
+
+    DescriptionVisitor dc;
+    Media *a = mb.top()->getMedia();
+    a->accept(&dc);
+    //std::cout << "conclusion_________________________________________________________" <<std::endl;
+    //std::cout << dc.getDescription() <<std::endl;
+
+    CHECK(std::string("combo(r(0 0 3 2) c(0 0 5) combo(r(0 0 5 4) c(0 0 10) )combo(r(0 1 8 7) c(0 1 10) ))") == dc.getDescription());
+}
+
+TEST(eighteen,TAdirector)
+{
+    Mydocument my;
+    std::string original = my.openDocument("myShape.txt");  //change your file's name
+
+
+    std::stack<MediaBuilder*> mb;
+    MediaDirector md;
+    md.setMediaBuilder(&mb);
+    md.concrete(original);
+
+
+    DescriptionVisitor dc;
+    Media *a = mb.top()->getMedia();
+    a->accept(&dc);
+
+    CHECK(std::string("combo(r(0 0 3 2) c(0 0 5) combo(r(0 0 5 4) c(0 0 10) )combo(r(0 1 8 7) c(0 1 10) ))") == dc.getDescription());   //change your test's string
 }
 
 

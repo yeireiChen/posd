@@ -22,7 +22,7 @@ class Rectangle:public Shape
 
     protected:
 
-    private:
+    public:
         double x,y,l,w;
 };
 

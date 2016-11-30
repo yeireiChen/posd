@@ -11,6 +11,7 @@ class ShapeMediaBuilder:public MediaBuilder
         void buildComboMedia();
         void buildShapeMedia(Shape*);
         Media* getMedia();
+        void buildAddComboMedia(Media*);
 
     private:
         ShapeMedia* shapes;

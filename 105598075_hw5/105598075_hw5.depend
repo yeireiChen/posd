@@ -68,7 +68,7 @@
 	<MediaBuilder.h>
 	<combMedia.h>
 
-1478000860 c:\users\randy2004\documents\github\posd\105598075_hw5\include\mediabuilder.h
+1480482221 c:\users\randy2004\documents\github\posd\105598075_hw5\include\mediabuilder.h
 	<Shape.h>
 	<ShapeMedia.h>
 	<combMedia.h>
@@ -102,17 +102,17 @@
 	"Rectangle.h"
 	<iostream>
 
-1478061794 c:\users\randy2004\documents\github\posd\105598075_hw5\include\rectangle.h
+1480497014 c:\users\randy2004\documents\github\posd\105598075_hw5\include\rectangle.h
 	"Shape.h"
 	<sstream>
 
 1477993478 source:c:\users\randy2004\documents\github\posd\105598075_hw5\src\shapemedia.cpp
 	"ShapeMedia.h"
 
-1478002507 source:c:\users\randy2004\documents\github\posd\105598075_hw5\src\shapemediabuilder.cpp
+1480482250 source:c:\users\randy2004\documents\github\posd\105598075_hw5\src\shapemediabuilder.cpp
 	"ShapeMediaBuilder.h"
 
-1478002507 c:\users\randy2004\documents\github\posd\105598075_hw5\include\shapemediabuilder.h
+1480482250 c:\users\randy2004\documents\github\posd\105598075_hw5\include\shapemediabuilder.h
 	<MediaBuilder.h>
 
 1478091579 source:c:\users\randy2004\documents\github\posd\105598075_hw5\src\text.cpp
@@ -158,7 +158,7 @@
 
 1474266801 c:\users\randy2004\documents\github\posd\105598075_hw5\cppunitlite\testregistry.h
 
-1480421036 c:\users\randy2004\documents\github\posd\105598075_hw5\include\utshapes.h
+1480507012 c:\users\randy2004\documents\github\posd\105598075_hw5\include\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Circle.h"
 	"Rectangle.h"
@@ -182,7 +182,7 @@
 1479730609 c:\users\randy2004\documents\github\posd\105598075_hw5\include\document.h
 	<iostream>
 
-1480426206 source:c:\users\randy2004\documents\github\posd\105598075_hw5\src\mediadirector.cpp
+1480507080 source:c:\users\randy2004\documents\github\posd\105598075_hw5\src\mediadirector.cpp
 	"MediaDirector.h"
 	<iostream>
 	<cstring>
@@ -190,6 +190,9 @@
 	"Circle.h"
 	"Rectangle.h"
 	"Triangle.h"
+	"combMediaBuilder.h"
+	"MediaVisitor.h"
+	"DescriptionVisitor.h"
 
 1479884055 c:\users\randy2004\documents\github\posd\105598075_hw5\include\mediadirector.h
 	<stack>
