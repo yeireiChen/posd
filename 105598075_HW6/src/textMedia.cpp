@@ -7,3 +7,4 @@ textMedia::~textMedia(){}
 Text* textMedia::getText()const{
     return txt;
 }
+

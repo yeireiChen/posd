@@ -6,7 +6,7 @@
 	<typeinfo>
 	"Cmd.h"
 
-1480931453 c:\users\randy2004\documents\github\posd\105598075_hw6\include\cmd.h
+1481019422 c:\users\randy2004\documents\github\posd\105598075_hw6\include\cmd.h
 	<iostream>
 	<sstream>
 	<string>
@@ -22,11 +22,11 @@
 
 1478069950 c:\users\randy2004\documents\github\posd\105598075_hw6\include\mediavisitor.h
 
-1477993478 c:\users\randy2004\documents\github\posd\105598075_hw6\include\shapemedia.h
+1481023717 c:\users\randy2004\documents\github\posd\105598075_hw6\include\shapemedia.h
 	"Media.h"
 	"Shape.h"
 
-1478088098 c:\users\randy2004\documents\github\posd\105598075_hw6\include\media.h
+1481023717 c:\users\randy2004\documents\github\posd\105598075_hw6\include\media.h
 	<iostream>
 	"MediaVisitor.h"
 
@@ -36,7 +36,7 @@
 	<algorithm>
 	<cmath>
 
-1480944241 c:\users\randy2004\documents\github\posd\105598075_hw6\include\combmedia.h
+1481023717 c:\users\randy2004\documents\github\posd\105598075_hw6\include\combmedia.h
 	<vector>
 	"Media.h"
 
@@ -47,15 +47,16 @@
 	<Shape.h>
 	<sstream>
 
-1480947662 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\cmd.cpp
+1481024517 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\cmd.cpp
 	"Cmd.h"
 	<cstring>
 	<sstream>
+	<map>
 	"MediaDirector.h"
 	"combMediaBuilder.h"
 	"ShapeMediaBuilder.h"
 
-1479728743 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\combmedia.cpp
+1481023717 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\combmedia.cpp
 	"combMedia.h"
 	<vector>
 	"DescriptionVisitor.h"
@@ -78,7 +79,7 @@
 	<MediaBuilder.h>
 	<combMedia.h>
 
-1480482221 c:\users\randy2004\documents\github\posd\105598075_hw6\include\mediabuilder.h
+1481011253 c:\users\randy2004\documents\github\posd\105598075_hw6\include\mediabuilder.h
 	<Shape.h>
 	<ShapeMedia.h>
 	<combMedia.h>
@@ -93,7 +94,7 @@
 1478092156 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\descriptionvisitor.cpp
 	"DescriptionVisitor.h"
 
-1480945203 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\mediadirector.cpp
+1481024517 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\mediadirector.cpp
 	"MediaDirector.h"
 	<iostream>
 	<cstring>
@@ -106,11 +107,12 @@
 	"MediaVisitor.h"
 	"DescriptionVisitor.h"
 
-1480945192 c:\users\randy2004\documents\github\posd\105598075_hw6\include\mediadirector.h
+1481024713 c:\users\randy2004\documents\github\posd\105598075_hw6\include\mediadirector.h
 	<stack>
 	"MediaBuilder.h"
 	<stdio.h>
 	<iostream>
+	<map>
 
 1480929472 c:\users\randy2004\documents\github\posd\105598075_hw6\include\rectangle.h
 	"Shape.h"
@@ -142,7 +144,7 @@
 	"Rectangle.h"
 	<iostream>
 
-1477993478 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\shapemedia.cpp
+1481023717 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\shapemedia.cpp
 	"ShapeMedia.h"
 
 1480482250 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\shapemediabuilder.cpp
@@ -159,10 +161,10 @@
 	"Shape.h"
 	"Media.h"
 
-1478091889 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\textmedia.cpp
+1481023315 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\textmedia.cpp
 	"textMedia.h"
 
-1478091761 c:\users\randy2004\documents\github\posd\105598075_hw6\include\textmedia.h
+1481023717 c:\users\randy2004\documents\github\posd\105598075_hw6\include\textmedia.h
 	"Media.h"
 	"Text.h"
 
@@ -212,4 +214,9 @@
 	<vector>
 	<iostream>
 	<stack>
+
+1481011344 source:c:\users\randy2004\documents\github\posd\105598075_hw6\src\test.cpp
+	"test.h"
+
+1481011344 c:\users\randy2004\documents\github\posd\105598075_hw6\include\test.h
 

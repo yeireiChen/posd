@@ -6,7 +6,7 @@
 
 using namespace std;
 
-combMedia::combMedia(){}
+combMedia::combMedia():name(""){}
 
 combMedia::~combMedia(){}
 
@@ -42,6 +42,14 @@ void combMedia::accept(MediaVisitor* visit){
 
     visit->visitCombMedia(this,false);
 
+}
+
+std::string combMedia::getName() const{
+    return name;
+}
+
+void combMedia::setName(std::string n){
+    name = n;
 }
 
 void combMedia::removeMedia(Media* t)const{
