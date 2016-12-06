@@ -5,8 +5,9 @@
 #include "MediaDirector.h"
 #include "combMediaBuilder.h"
 #include "ShapeMediaBuilder.h"
+#include "Circle.h"
 
-
+typedef std::pair<std::string, Media*> MyPair;
 Cmd::Cmd(){}
 
 Cmd::~Cmd(){}
@@ -17,6 +18,8 @@ void split(std::string cmd ,std::vector<std::string> *s){   //- def a = Circle(2
 
     std::string temp="";
     char tab2[1024];
+
+    std::cout << cmd <<std::endl;
 
     std::strcpy(tab2, cmd.c_str());
     //std::cout << strlen(tab2) <<std::endl;
@@ -39,6 +42,10 @@ void split(std::string cmd ,std::vector<std::string> *s){   //- def a = Circle(2
             }
         }
     }
+
+    /*std::cout << s->size() << std::endl;
+    for(int i=0 ;i < s->size() ;i++)
+        std::cout << " i (" <<i<<") is "<< s->at(i) << std::endl;*/
 }
 
 
@@ -76,6 +83,8 @@ void splitDot(std::string number,std::vector<std::string> *s){  //2,1,1
 void def(std::string name,std::string formula,std::map<std::string,Media*> *names){
 
     MediaDirector dc;
+    ShapeMediaBuilder shB;
+    combMediaBuilder comB;
     std::vector<std::string> numbers;
     std::string temp=formula;
     std::string typeN;
@@ -98,7 +107,7 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
         number = temp.substr(shLocation+1,shLast);
         //std::cout << " number is "<<number << std::endl;
 
-        if(typeN.compare("Circle")==0){
+        if(typeN.compare("Circle")==0){ //(std::string content,std::vector<double> *n,MediaBuilder *s)
             //std::cout << "Circle" <<std::endl;
             //std::cout << "number is " << number<<std::endl;
             splitDot(number,&numbers);
@@ -109,9 +118,14 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
             }
 
             if(numbers.size()==3){
+                std::cout << "correct parameter structure in " << typeN<<std::endl;
+                dc.buildShpae(typeN,&numbers,&shB);
+                Media *s = shB.getMedia();
+                s->setName(name);
+                names->insert(MyPair(name,s));
 
             }else{
-                std::cout << "error parameter " << typeN<<std::endl;
+                std::cout << "error parameter structure in  " << typeN<<std::endl;
             }
         }
         else if(typeN.compare("Rectangle")==0){
@@ -125,6 +139,11 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
             }
 
             if(numbers.size()==4){
+                std::cout << "correct parameter structure in " << typeN<<std::endl;
+                dc.buildShpae(typeN,&numbers,&shB);
+                Media *s = shB.getMedia();
+                s->setName(name);
+                names->insert(MyPair(name,s));
 
             }else{
                 std::cout << "error parameter " << typeN<<std::endl;
@@ -141,7 +160,11 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
             }
 
             if(numbers.size()==6){
-
+                std::cout << "correct parameter structure in " << typeN<<std::endl;
+                dc.buildShpae(typeN,&numbers,&shB);
+                Media *s = shB.getMedia();
+                s->setName(name);
+                names->insert(MyPair(name,s));
             }else{
                 std::cout << "error parameter " << typeN<<std::endl;
             }
@@ -152,7 +175,7 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
 
 
     }
-    else if(cLocation!=-1){ //combo{}
+    else if(cLocation!=-1){ //combo{}   (std::string content,std::vector<Media*> *n,MediaBuilder *s)
         //std::cout << "{{{----------------------------------------------" <<std::endl;
         //std::cout << "cLocation is " << cLocation <<std::endl;
         //std::cout << "cLast is " << cLast <<std::endl;
@@ -176,12 +199,17 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
 
     }
     else{
-        std::cout << "error syntax" <<std::endl;
+        std::cout << "error syntax in def" <<std::endl;
     }
 
+    //std::cout << "name test--------------------------------------" <<std::endl; //std::map<std::string,Media*> *names
+    std::map<std::string,Media*>::iterator it;
 
+    /*it = names->find("cSmall");
+    std::cout <<  it->second->getName() << std::endl;*/
 
-
+    /*for (std::map<std::string,Media*>::iterator it=names->begin(); it!=names->end(); ++it)  //show run()'s names
+        std::cout << it->first << " => " << it->second->getName() << std::endl;*/
 
 
     //- def a = Circle(2,1,1)
@@ -194,8 +222,76 @@ void Cmd::run(){
     std::map<std::string,Media*> names;
     std::string cmd;
 
+    /*ShapeMedia *t = new ShapeMedia(new Circle(2,1,1));
+    t->setName("test1234");
+    names.insert(MyPair("test",t)); //upper for test in def-*/
 
     while(cmd!="exit"){
+        std::cout << "enter cmd " <<std::endl<<":-";
+        std::getline(std::cin,cmd);
+        //std::cout << "enter cmd is " <<cmd  <<std::endl;'s
+
+
+        split(cmd,&cmds);
+        if(!cmds.empty()){  //check cmds.at(0)=="-" else continue
+            if(cmds.size()>=1 || cmds.size()<=5){
+                //std::cout << "correct syntax" <<std::endl;
+            }
+            else{   //error syntax
+                std::cout << "error syntax first" <<std::endl;
+                cmds.clear();
+                continue;
+            }
+            /*if(cmds.at(0).compare("-")!=0 && cmds.size()<2 && cmds.size()>5){
+                std::cout << "error syntax" <<std::endl;
+                cmds.clear();
+                continue;
+            }*/
+
+            if(cmds.at(0).compare("def")==0){
+                if(cmds.at(2).compare("=")==0 && cmds.size()==4){
+                    std::cout << "Action is def" <<std::endl;
+                    def(cmds.at(1),cmds.at(3),&names);
+                }
+                else{  //error syntax
+
+                    std::cout << "error syntax at def structure" <<std::endl;
+                    cmds.clear();
+                    continue;
+                }
+
+            }
+            else if(cmds.at(0).compare("add")==0){
+                std::cout << "Action is add" <<std::endl;
+            }
+            else if(cmds.at(0).compare("delete")==0){
+                std::cout << "Action is delete" <<std::endl;
+            }
+            else if(cmds.at(0).compare("show")==0){
+                std::cout << "Action is show" <<std::endl;
+                for (std::map<std::string,Media*>::iterator it=names.begin(); it!=names.end(); ++it)  //show run()'s names
+                    std::cout << it->second->getName() << std::endl;
+            }
+            else if(cmds.at(0).compare("save")==0){
+                std::cout << "Action is save" <<std::endl;
+            }
+            else if(cmds.at(0).compare("load")==0){
+                std::cout << "Action is load" <<std::endl;
+            }
+            else{   //area() perimeter()
+
+            }
+        }
+
+        std::cout << "----------------------------------------------" <<std::endl;
+
+        /*for(int i=0; i<cmds.size(); i++){
+            std::cout << cmds.at(i) <<std::endl;
+        }*/
+        cmds.clear();
+    }
+
+    /*while(cmd!="exit"){
         std::cout << "enter cmd:" ;
         std::getline(std::cin,cmd);
         //std::cout << "enter cmd is " <<cmd  <<std::endl;'s
@@ -212,11 +308,6 @@ void Cmd::run(){
                 cmds.clear();
                 continue;
             }
-            /*if(cmds.at(0).compare("-")!=0 && cmds.size()<2 && cmds.size()>5){
-                std::cout << "error syntax" <<std::endl;
-                cmds.clear();
-                continue;
-            }*/
 
             if(cmds.at(1).compare("def")==0){
                 if(cmds.at(3).compare("=")==0 && cmds.size()==5){
@@ -248,18 +339,8 @@ void Cmd::run(){
 
 
          std::cout << "----------------------------------------------" <<std::endl;
-
-        /*for(int i=0; i<cmds.size(); i++){
-            std::cout << cmds.at(i) <<std::endl;
-        }*/
         cmds.clear();
-
-
-
-
-
-
-    }
+    }*/
 }
 
 

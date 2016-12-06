@@ -146,12 +146,24 @@ void MediaDirector::concrete(std::string content){
 }
 
 void MediaDirector::buildComb(std::string content,std::vector<Media*> *n,MediaBuilder *s){
-    pushBuilder(s);
-}
-void MediaDirector::buildShpae(std::string content,std::vector<double> *n,MediaBuilder *s){
-    pushBuilder(s);
 
 }
-void MediaDirector::pushBuilder(MediaBuilder* s){   //std::stack<MediaBuilder*> stmp;
-    stmp.push(s);
- }
+void MediaDirector::buildShpae(std::string content,std::vector<std::string> *n,MediaBuilder* s){
+    std::cout << "creater is " << content << std::endl;
+    if (content.compare("Circle")==0 && n->size()==3){
+        std::cout << "prepare to create Circle" << std::endl;
+        Circle *c = new Circle(atof(n->at(0).c_str()),atof(n->at(1).c_str()),atof(n->at(2).c_str()));
+        s->buildShapeMedia(c);
+    }else if (content.compare("Rectangle")==0 && n->size()==4){
+        std::cout << "prepare to create Rectangle" << std::endl;
+        Rectangle *c = new Rectangle(atof(n->at(0).c_str()),atof(n->at(1).c_str()),atof(n->at(2).c_str()),atof(n->at(3).c_str()));
+        s->buildShapeMedia(c);
+    }else if(content.compare("Triangle")==0 && n->size()==6){
+        std::cout << "prepare to create Traingle" << std::endl;
+        Triangle *c = new Triangle(atof(n->at(0).c_str()),atof(n->at(1).c_str()),atof(n->at(2).c_str()),atof(n->at(3).c_str()),atof(n->at(4).c_str()),atof(n->at(5).c_str()));
+        s->buildShapeMedia(c);
+    }else{
+        std::cout << "error type" << std::endl;
+    }
+
+}

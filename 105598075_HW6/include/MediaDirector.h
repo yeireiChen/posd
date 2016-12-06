@@ -16,8 +16,7 @@ class MediaDirector
         void setMediaBuilder(std::stack<MediaBuilder*> *mbs);
         void concrete(std::string);
         void buildComb(std::string,std::vector<Media*>*,MediaBuilder*);
-        void buildShpae(std::string,std::vector<double>*,MediaBuilder*);
-        void pushBuilder(MediaBuilder*);
+        void buildShpae(std::string,std::vector<std::string>*,MediaBuilder*);
 
     protected:
 
