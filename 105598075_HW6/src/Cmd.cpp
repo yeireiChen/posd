@@ -9,6 +9,7 @@
 #include "MediaDirector.h"
 #include "combMediaBuilder.h"
 #include "ShapeMediaBuilder.h"
+<<<<<<< HEAD
 #include "AreaVisitor.h"
 #include "PerimeterVisitor.h"
 #include "DescriptionVisitor.h"
@@ -21,6 +22,11 @@ template <typename T> char* get_typename(T& object)
     return abi::__cxa_demangle(typeid(object).name(), 0, 0, 0);
 }
 
+=======
+#include "Circle.h"
+
+typedef std::pair<std::string, Media*> MyPair;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
 Cmd::Cmd(){}
 
 Cmd::~Cmd(){}
@@ -204,7 +210,11 @@ void split(std::string cmd ,std::vector<std::string> *s){   //- def a = Circle(2
     std::string temp="";
     char tab2[1024];
 
+<<<<<<< HEAD
     //std::cout << cmd <<std::endl;
+=======
+    std::cout << cmd <<std::endl;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
 
     std::strcpy(tab2, cmd.c_str());
     //std::cout << strlen(tab2) <<std::endl;
@@ -337,17 +347,27 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
             }*/
 
             if(numbers.size()==3){
+<<<<<<< HEAD
                 //std::cout << "correct parameter structure in " << name << "->"<<typeN<<std::endl;
+=======
+                std::cout << "correct parameter structure in " << typeN<<std::endl;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
                 dc.buildShpae(typeN,&numbers,&shB);
                 Media *s = shB.getMedia();
                 s->setName(name);
                 names->insert(MyPair(name,s));
+<<<<<<< HEAD
                 //std::cout << "create successuflly " << name << "->"<<typeN<<std::endl;
                 //it = names->find(name);
                 std::cout << ">> "  << formula <<std::endl;
 
             }else{
                 std::cout << "error parameter structure in  " << name << "->"<< typeN<<std::endl;
+=======
+
+            }else{
+                std::cout << "error parameter structure in  " << typeN<<std::endl;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
             }
         }
         else if(typeN.compare("Rectangle")==0){
@@ -361,13 +381,20 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
             }*/
 
             if(numbers.size()==4){
+<<<<<<< HEAD
                 //std::cout << "correct parameter structure in " << name << "->"<< typeN<<std::endl;
+=======
+                std::cout << "correct parameter structure in " << typeN<<std::endl;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
                 dc.buildShpae(typeN,&numbers,&shB);
                 Media *s = shB.getMedia();
                 s->setName(name);
                 names->insert(MyPair(name,s));
+<<<<<<< HEAD
                 std::cout << ">> "  << formula <<std::endl;
                 //std::cout << "create successuflly " << name << "->"<<typeN<<std::endl;
+=======
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
 
             }else{
                 std::cout << "error parameter structure in  " << name << "->"<< typeN<<std::endl;
@@ -384,6 +411,7 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
             }*/
 
             if(numbers.size()==6){
+<<<<<<< HEAD
                 //std::cout << "correct parameter structure in " << name << "->"<< typeN<<std::endl;
                 try{
                     dc.buildShpae(typeN,&numbers,&shB);
@@ -395,6 +423,13 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
                 }catch(std::string s){
                     std::cout << s<< std::endl;
                 }
+=======
+                std::cout << "correct parameter structure in " << typeN<<std::endl;
+                dc.buildShpae(typeN,&numbers,&shB);
+                Media *s = shB.getMedia();
+                s->setName(name);
+                names->insert(MyPair(name,s));
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
             }else{
                 std::cout << "error parameter " << name << "->"<< typeN<<std::endl;
             }
@@ -487,11 +522,19 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
 
     }
     else{
+<<<<<<< HEAD
         std::cout << "error syntax in def {}()" <<std::endl;
     }
 
     //std::cout << "name test--------------------------------------" <<std::endl; //std::map<std::string,Media*> *names
     //std::map<std::string,Media*>::iterator it;
+=======
+        std::cout << "error syntax in def" <<std::endl;
+    }
+
+    //std::cout << "name test--------------------------------------" <<std::endl; //std::map<std::string,Media*> *names
+    std::map<std::string,Media*>::iterator it;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
 
     /*it = names->find("cSmall");
     std::cout <<  it->second->getName() << std::endl;*/
@@ -540,9 +583,75 @@ void Cmd::run(){
 
             if(cmds.at(0).compare("def")==0){
                 if(cmds.at(2).compare("=")==0 && cmds.size()==4){
+<<<<<<< HEAD
                     //std::cout << "Action is def" <<std::endl;
                     //std::cout << "==============" <<std::endl;
                     def(cmds.at(1),cmds.at(3),&names);
+=======
+                    std::cout << "Action is def" <<std::endl;
+                    def(cmds.at(1),cmds.at(3),&names);
+                }
+                else{  //error syntax
+
+                    std::cout << "error syntax at def structure" <<std::endl;
+                    cmds.clear();
+                    continue;
+                }
+
+            }
+            else if(cmds.at(0).compare("add")==0){
+                std::cout << "Action is add" <<std::endl;
+            }
+            else if(cmds.at(0).compare("delete")==0){
+                std::cout << "Action is delete" <<std::endl;
+            }
+            else if(cmds.at(0).compare("show")==0){
+                std::cout << "Action is show" <<std::endl;
+                for (std::map<std::string,Media*>::iterator it=names.begin(); it!=names.end(); ++it)  //show run()'s names
+                    std::cout << it->second->getName() << std::endl;
+            }
+            else if(cmds.at(0).compare("save")==0){
+                std::cout << "Action is save" <<std::endl;
+            }
+            else if(cmds.at(0).compare("load")==0){
+                std::cout << "Action is load" <<std::endl;
+            }
+            else{   //area() perimeter()
+
+            }
+        }
+
+        std::cout << "----------------------------------------------" <<std::endl;
+
+        /*for(int i=0; i<cmds.size(); i++){
+            std::cout << cmds.at(i) <<std::endl;
+        }*/
+        cmds.clear();
+    }
+
+    /*while(cmd!="exit"){
+        std::cout << "enter cmd:" ;
+        std::getline(std::cin,cmd);
+        //std::cout << "enter cmd is " <<cmd  <<std::endl;'s
+
+
+        split(cmd,&cmds);
+        //std::cout << "size is " << cmds.size() << std::endl;
+        if(!cmds.empty()){  //check cmds.at(0)=="-" else continue
+            if(cmds.at(0).compare("-")==0 && cmds.size()>=2 && cmds.size()<=5){
+                //std::cout << "correct syntax" <<std::endl;
+            }
+            else{   //error syntax
+                std::cout << "error syntax" <<std::endl;
+                cmds.clear();
+                continue;
+            }
+
+            if(cmds.at(1).compare("def")==0){
+                if(cmds.at(3).compare("=")==0 && cmds.size()==5){
+                    std::cout << "Action is def" <<std::endl;
+                    def(cmds.at(2),cmds.at(4),&names);
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
                 }
                 else{  //error syntax
 
@@ -618,6 +727,7 @@ void Cmd::run(){
             }
         }
 
+<<<<<<< HEAD
         std::cout << "----------------------------------------------" <<std::endl;
 
         /*for(int i=0; i<cmds.size(); i++){
@@ -627,6 +737,11 @@ void Cmd::run(){
         areaPerimeter.clear();
     }//end while
 
+=======
+         std::cout << "----------------------------------------------" <<std::endl;
+        cmds.clear();
+    }*/
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
 }
 
 

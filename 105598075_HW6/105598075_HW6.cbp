@@ -41,7 +41,10 @@
 		<Unit filename="include/AreaVisitor.h" />
 		<Unit filename="include/Circle.h" />
 		<Unit filename="include/Cmd.h" />
+<<<<<<< HEAD
 		<Unit filename="include/DescriptionNameVisitor.h" />
+=======
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
 		<Unit filename="include/DescriptionVisitor.h" />
 		<Unit filename="include/Document.h" />
 		<Unit filename="include/Media.h" />
@@ -56,7 +59,10 @@
 		<Unit filename="include/ShapeMediaBuilder.h" />
 		<Unit filename="include/Text.h" />
 		<Unit filename="include/Triangle.h" />
+<<<<<<< HEAD
 		<Unit filename="include/TriangleC.h" />
+=======
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
 		<Unit filename="include/combMedia.h" />
 		<Unit filename="include/combMediaBuilder.h" />
 		<Unit filename="include/combShape.h" />
@@ -69,7 +75,10 @@
 		<Unit filename="src/AreaVisitor.cpp" />
 		<Unit filename="src/Circle.cpp" />
 		<Unit filename="src/Cmd.cpp" />
+<<<<<<< HEAD
 		<Unit filename="src/DescriptionNameVisitor.cpp" />
+=======
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
 		<Unit filename="src/DescriptionVisitor.cpp" />
 		<Unit filename="src/MediaDirector.cpp" />
 		<Unit filename="src/Mydocument.cpp" />
@@ -79,7 +88,10 @@
 		<Unit filename="src/ShapeMediaBuilder.cpp" />
 		<Unit filename="src/Text.cpp" />
 		<Unit filename="src/Triangle.cpp" />
+<<<<<<< HEAD
 		<Unit filename="src/TriangleC.cpp" />
+=======
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
 		<Unit filename="src/combMedia.cpp" />
 		<Unit filename="src/combMediaBuilder.cpp" />
 		<Unit filename="src/combShape.cpp" />
