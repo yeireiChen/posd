@@ -145,10 +145,9 @@ void MediaDirector::concrete(std::string content){
 
 }
 
-void MediaDirector::buildComb(std::string content,std::vector<Media*> *n,MediaBuilder *s){
-    pushBuilder(s);
+void MediaDirector::buildComb(std::string content,MediaBuilder *s){
 }
-void MediaDirector::buildShpae(std::string content,std::vector<double> *n,MediaBuilder *s){
+void MediaDirector::buildShpae(std::string content,MediaBuilder *s){
     pushBuilder(s);
 
 }

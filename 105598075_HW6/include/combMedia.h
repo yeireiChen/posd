@@ -15,14 +15,11 @@ class combMedia:public Media
         void accept(MediaVisitor*);
         void add(Media*);
         void removeMedia(Media*)const;
-        std::string getName() const;
-        void setName(std::string);
 
     protected:
 
     private:
         std::vector<Media*> cMedia;
-        std::string name;
 };
 
 #endif // COMBMEDIA_H

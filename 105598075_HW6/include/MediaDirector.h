@@ -5,7 +5,6 @@
 #include "MediaBuilder.h"
 #include <stdio.h>
 #include <iostream>
-#include <map>
 
 
 class MediaDirector
@@ -15,8 +14,8 @@ class MediaDirector
         virtual ~MediaDirector();
         void setMediaBuilder(std::stack<MediaBuilder*> *mbs);
         void concrete(std::string);
-        void buildComb(std::string,std::vector<Media*>*,MediaBuilder*);
-        void buildShpae(std::string,std::vector<double>*,MediaBuilder*);
+        void buildComb(std::string,MediaBuilder*);
+        void buildShpae(std::string,MediaBuilder*);
         void pushBuilder(MediaBuilder*);
 
     protected:

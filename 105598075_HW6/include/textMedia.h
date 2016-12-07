@@ -12,8 +12,6 @@ class textMedia:public Media
         double perimeter() const{}
         void accept(MediaVisitor*){}
         Text* getText() const;
-        std::string getName()const{}
-        void setName(std::string){}
 
 
     protected:
