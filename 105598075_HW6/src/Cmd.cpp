@@ -9,6 +9,10 @@
 #include "MediaDirector.h"
 #include "combMediaBuilder.h"
 #include "ShapeMediaBuilder.h"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 #include "AreaVisitor.h"
 #include "PerimeterVisitor.h"
 #include "DescriptionVisitor.h"
@@ -21,10 +25,19 @@ template <typename T> char* get_typename(T& object)
     return abi::__cxa_demangle(typeid(object).name(), 0, 0, 0);
 }
 
+<<<<<<< HEAD
+=======
+=======
+#include "Circle.h"
+
+typedef std::pair<std::string, Media*> MyPair;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+>>>>>>> origin/master
 Cmd::Cmd(){}
 
 Cmd::~Cmd(){}
 
+<<<<<<< HEAD
 bool checkFileName(std::string fileName){
     std::vector<std::string> temp;
     std::string temper;
@@ -42,6 +55,182 @@ bool checkFileName(std::string fileName){
     }
     temp.push_back(temper);
 
+=======
+void add(std::string addName,std::string combName,std::map<std::string,Media*> *names){
+
+    std::map<std::string,Media*>::iterator addN;
+    std::map<std::string,Media*>::iterator comb;
+    std::string classN;
+    DescriptionVisitor dVisitor;
+    DescriptionNameVisitor dnVisitor;
+
+    if(names->find(addName)!=names->end()){
+        addN = names->find(addName);
+        //std::cout << "found, " << addName<< std::endl;
+        if(names->find(combName)!=names->end()){    //check exit,and check next
+            comb = names->find(combName);
+            classN = get_typename(*(comb->second));
+            if(classN.compare("combMedia")==0){ //check combMedia
+                //std::cout << "prepare to add" << std::endl;
+                Media *a = addN->second;
+                comb->second->add(a);
+                comb->second->accept(&dVisitor);
+                comb->second->accept(&dnVisitor);
+
+                std::cout << ">> " << combName << " = " << dnVisitor.getDescription() << "= " << dVisitor.getDescription()<<std::endl;
+            }
+            else{
+                std::cout << combName << "is not a combMedia" << std::endl;
+            }
+        }
+        else{
+            std::cout << "Not found "<<combName << std::endl;
+        }
+    }
+    else{
+        std::cout << "Not found "<<addName << std::endl;
+    }
+
+}
+void save (std::string funName,std::string fileName,std::map<std::string,Media*> *names){   //fileName doesn't check
+
+    std::map<std::string,Media*>::iterator it;
+    std::string classN;
+    std::fstream fs;
+    DescriptionVisitor dVisitor;
+    DescriptionNameVisitor dnVisitor;
+
+    std::cout << fileName << std::endl;
+    int last = fileName.size();
+    fileName = fileName.substr(1,last-2);
+    std::cout << fileName << std::endl;
+
+    fs.open(fileName, std::ios::out);
+
+    if(names->find(funName) == names->end()){
+        std::cout << "not found" << std::endl;
+    }
+    else{
+        it = names->find(funName);
+        std::cout << "found" << std::endl;
+
+        classN = get_typename(*(it->second));
+        //std::cout << classN <<std::endl;
+        if(classN.compare("ShapeMedia")==0)
+        {
+            std::cout << "save ShapeMedia" <<std::endl;
+            //it->second->accept(&aVisitor);
+            //std::cout << ">> " <<aVisitor.getArea()<<std::endl;
+        }
+        else if (classN.compare("combMedia")==0)
+        {
+            std::cout << "prepare datas" <<std::endl;
+            //it->second->accept(&aVisitor);
+            //std::cout << ">> " <<aVisitor.getArea()<<std::endl;
+            it->second->accept(&dVisitor);
+            std::cout << dVisitor.getDescription() << std::endl;
+
+            it->second->accept(&dnVisitor);
+            std::cout << dnVisitor.getDescription() << std::endl;
+
+            if(fs.is_open()){
+             fs << dVisitor.getDescription() <<std::endl;
+             fs << dnVisitor.getDescription() <<std::endl;
+             fs.close();
+            }
+            else{
+                std::cout << "should not be here" << std::endl;
+            }
+
+            /*if(ofs.is_open()){
+                ofs << dnVisitor.getDescription()<<std::endl;
+                ofs << dVisitor.getDescription()<<std::endl;
+                ofs.close();
+            }
+            else{
+                std::cout << "error fileName " << fileName << std::endl;
+            }*/
+        }
+        else{
+            std::cout << "wrong type" << std::endl;
+        }
+    }
+}
+
+void calculate(std::string funName,std::string method,std::map<std::string,Media*> *names){ //areaPerimeter.at(0),areaPerimeter.at(1),&names
+
+    std::map<std::string,Media*>::iterator it;
+    //std::cout << funName << std::endl;
+    //std::cout << method << std::endl;
+    std::string classN;
+    AreaVisitor aVisitor;
+    PerimeterVisitor pVisitor;
+    /*Media *a = new ShapeMedia(new Circle(1,1,1)); //for test get class name
+    Media *b = new combMedia();
+    b->add(new ShapeMedia(new Circle(1,1,2)));*/
+
+
+    //std::cout << "------------------------------------------" << std::endl;
+    /*for (std::map<std::string,Media*>::iterator it=names->begin(); it!=names->end(); ++it){  //show run()'s names
+                std::cout << it->second->getName() << std::endl;
+    }*/
+
+    if(names->find(funName)==names->end()){   //not found
+        std::cout << "not found" <<std::endl;
+    }
+    else{//found
+        //std::cout << "found" <<std::endl;
+        it = names->find(funName);
+        //std::cout << it->second->getName() << std::endl;
+
+        if(method.compare("area?")==0){
+
+            //std::cout << typeid(*b).name() << std::endl;
+            //std::cout << typeid(*(it->second)).name() << std::endl;
+            classN = get_typename(*(it->second));
+            //std::cout << classN <<std::endl;
+            if(classN.compare("ShapeMedia")==0){
+                //std::cout << "calculate ShapeMedia area" <<std::endl;
+                it->second->accept(&aVisitor);
+                std::cout << ">> " <<aVisitor.getArea()<<std::endl;
+            }
+            else if (classN.compare("combMedia")==0){
+                //std::cout << "calculate combMedia area" <<std::endl;
+                it->second->accept(&aVisitor);
+                std::cout << ">> " <<aVisitor.getArea()<<std::endl;
+            }
+            else{
+                std::cout << "wrong type" << std::endl;
+            }
+
+        }
+        else if(method.compare("perimeter?")==0){
+
+            classN = get_typename(*(it->second));
+            //std::cout << classN <<std::endl;
+            if(classN.compare("ShapeMedia")==0){
+                //std::cout << "calculate ShapeMedia perimeter" <<std::endl;
+                it->second->accept(&pVisitor);
+                std::cout << ">> " <<pVisitor.getPerimeter()<<std::endl;
+            }
+            else if (classN.compare("combMedia")==0){
+                //std::cout << "calculate combMedia perimeter" <<std::endl;
+                it->second->accept(&pVisitor);
+                std::cout << ">> " <<pVisitor.getPerimeter()<<std::endl;
+            }
+            else{
+                std::cout << "wrong type" << std::endl;
+            }
+        }
+        else{
+            std::cout << "error method -> "<< method <<"  ,should be area? or perimeter? "<<std::endl;
+        }
+    }
+    //it->find(funName);
+
+}
+void split(std::string cmd ,std::vector<std::string> *s){   //- def a = Circle(2,1,1)
+>>>>>>> origin/master
 
     if(temp.size()==2){
         //std::cout << "correct fileName" << std::endl;
@@ -94,6 +283,7 @@ void add(std::string addName,std::string combName,std::map<std::string,Media*> *
         std::cout << "Not found "<<addName << std::endl;
     }
 
+<<<<<<< HEAD
 }
 void save (std::string funName,std::string fileName,std::map<std::string,Media*> *names){   //fileName doesn't check
 
@@ -156,6 +346,13 @@ void save (std::string funName,std::string fileName,std::map<std::string,Media*>
         }
     }
 }
+=======
+<<<<<<< HEAD
+    //std::cout << cmd <<std::endl;
+=======
+    std::cout << cmd <<std::endl;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+>>>>>>> origin/master
 
 void calculate(std::string funName,std::string method,std::map<std::string,Media*> *names){ //areaPerimeter.at(0),areaPerimeter.at(1),&names
 
@@ -293,6 +490,14 @@ void splitDot(std::string number,std::vector<std::string> *s){  //2,1,1
     else{   //only on value
         s->push_back(temp);
     }
+<<<<<<< HEAD
+=======
+
+    /*if(s->size()!=0){ //show number
+        for(int i=0;i<s->size();i++)
+            std::cout << s->at(i) <<std::endl;
+    }*/
+>>>>>>> origin/master
 }
 
 void def(std::string name,std::string formula,std::map<std::string,Media*> *names){
@@ -337,32 +542,78 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
             }*/
 
             if(numbers.size()==3){
+<<<<<<< HEAD
                 //std::cout << "correct parameter structure in " << name << "->"<<typeN<<std::endl;
+=======
+<<<<<<< HEAD
+                //std::cout << "correct parameter structure in " << name << "->"<<typeN<<std::endl;
+=======
+                std::cout << "correct parameter structure in " << typeN<<std::endl;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+>>>>>>> origin/master
                 dc.buildShpae(typeN,&numbers,&shB);
                 Media *s = shB.getMedia();
                 s->setName(name);
                 names->insert(MyPair(name,s));
+<<<<<<< HEAD
                 //std::cout << "create successuflly " << name << "->"<<typeN<<std::endl;
                 //it = names->find(name);
                 std::cout << ">> "  << formula <<std::endl;
 
             }else{
                 std::cout << "error parameter structure in  " << name << "->"<< typeN<<std::endl;
+=======
+<<<<<<< HEAD
+                //std::cout << "create successuflly " << name << "->"<<typeN<<std::endl;
+                //it = names->find(name);
+                std::cout << ">> "  << formula <<std::endl;
+
+            }else{
+                std::cout << "error parameter structure in  " << name << "->"<< typeN<<std::endl;
+=======
+
+            }else{
+                std::cout << "error parameter structure in  " << typeN<<std::endl;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+>>>>>>> origin/master
             }
         }
         else if(typeN.compare("Rectangle")==0){
             //std::cout << "Rectangle" <<std::endl;
             //std::cout << "number is " << number<<std::endl;
             splitDot(number,&numbers);
+<<<<<<< HEAD
 
             if(numbers.size()==4){
                 //std::cout << "correct parameter structure in " << name << "->"<< typeN<<std::endl;
+=======
+            /*if(numbers.size()!=0) //show number
+            {
+                for(int i=0; i<numbers.size(); i++)
+                    std::cout << numbers.at(i) <<std::endl;
+            }*/
+
+            if(numbers.size()==4){
+<<<<<<< HEAD
+                //std::cout << "correct parameter structure in " << name << "->"<< typeN<<std::endl;
+=======
+                std::cout << "correct parameter structure in " << typeN<<std::endl;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+>>>>>>> origin/master
                 dc.buildShpae(typeN,&numbers,&shB);
                 Media *s = shB.getMedia();
                 s->setName(name);
                 names->insert(MyPair(name,s));
+<<<<<<< HEAD
                 std::cout << ">> "  << formula <<std::endl;
                 //std::cout << "create successuflly " << name << "->"<<typeN<<std::endl;
+=======
+<<<<<<< HEAD
+                std::cout << ">> "  << formula <<std::endl;
+                //std::cout << "create successuflly " << name << "->"<<typeN<<std::endl;
+=======
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+>>>>>>> origin/master
 
             }else{
                 std::cout << "error parameter structure in  " << name << "->"<< typeN<<std::endl;
@@ -372,8 +623,19 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
             //std::cout << "Triangle" <<std::endl;
             //std::cout << "number is " << number<<std::endl;
             splitDot(number,&numbers);
+<<<<<<< HEAD
 
             if(numbers.size()==6){
+=======
+            /*if(numbers.size()!=0) //show number
+            {
+                for(int i=0; i<numbers.size(); i++)
+                    std::cout << numbers.at(i) <<std::endl;
+            }*/
+
+            if(numbers.size()==6){
+<<<<<<< HEAD
+>>>>>>> origin/master
                 //std::cout << "correct parameter structure in " << name << "->"<< typeN<<std::endl;
                 try{
                     dc.buildShpae(typeN,&numbers,&shB);
@@ -385,6 +647,16 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
                 }catch(std::string s){
                     std::cout << s<< std::endl;
                 }
+<<<<<<< HEAD
+=======
+=======
+                std::cout << "correct parameter structure in " << typeN<<std::endl;
+                dc.buildShpae(typeN,&numbers,&shB);
+                Media *s = shB.getMedia();
+                s->setName(name);
+                names->insert(MyPair(name,s));
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+>>>>>>> origin/master
             }else{
                 std::cout << "error parameter " << name << "->"<< typeN<<std::endl;
             }
@@ -414,6 +686,20 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
                     std::cout << shpNames.at(i) <<std::endl;
             }*/
 
+<<<<<<< HEAD
+=======
+            //std::map<std::string,Media*> *names
+            /*for (std::map<std::string,Media*>::iterator it=names.begin(); it!=names.end(); ++it){  //show run()'s names
+                std::cout << it->second->getName() << std::endl;
+            }*/
+
+            /*std::map<std::string,Media*>::iterator it;
+            it = names->find("cSmall");
+            std::cout <<  it->second->getName() << std::endl;*/
+
+
+
+>>>>>>> origin/master
             if(shpNames.size()!=0){
                 for(int i=0; i<shpNames.size(); i++){
                     //std::cout << shpNames.at(i) <<std::endl;
@@ -426,6 +712,10 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
                         yesToC=1;
                     }
                 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
             }   //end if
 
 
@@ -438,6 +728,10 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
                     //std::cout <<  it->second->getName() <<std::endl;
                     combMaterial.push_back(it->second);
                 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
                 /*for(int i=0;i<combMaterial.size();i++)
                     std::cout << combMaterial.at(i)->getName() << std::endl;*/
                     dc.buildComb(&combMaterial,&comB);
@@ -451,14 +745,46 @@ void def(std::string name,std::string formula,std::map<std::string,Media*> *name
                 std::cout << "----------------------------------------------------------"<<std::endl;
                 std::cout << " upper names don't exit,so it can't build combo "<<std::endl;
             }
+
+
+
+
+
+
         }
         else{
             std::cout << "error function " << typeN <<std::endl;
         }
     }
     else{
+<<<<<<< HEAD
         std::cout << "error syntax in def {}()" <<std::endl;
     }
+=======
+<<<<<<< HEAD
+        std::cout << "error syntax in def {}()" <<std::endl;
+    }
+
+    //std::cout << "name test--------------------------------------" <<std::endl; //std::map<std::string,Media*> *names
+    //std::map<std::string,Media*>::iterator it;
+=======
+        std::cout << "error syntax in def" <<std::endl;
+    }
+
+    //std::cout << "name test--------------------------------------" <<std::endl; //std::map<std::string,Media*> *names
+    std::map<std::string,Media*>::iterator it;
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+
+    /*it = names->find("cSmall");
+    std::cout <<  it->second->getName() << std::endl;*/
+
+    /*for (std::map<std::string,Media*>::iterator it=names->begin(); it!=names->end(); ++it)  //show run()'s names
+        std::cout << it->first << " => " << it->second->getName() << std::endl;*/
+
+
+    //- def a = Circle(2,1,1)
+    //- def a = combo{abc,abc}
+>>>>>>> origin/master
 }
 
 void Cmd::run(){
@@ -495,8 +821,17 @@ void Cmd::run(){
             }*/
             if(cmds.at(0).compare("def")==0){
                 if(cmds.at(2).compare("=")==0 && cmds.size()==4){
+<<<<<<< HEAD
                     //std::cout << "Action is def" <<std::endl;
                     //std::cout << "==============" <<std::endl;
+=======
+<<<<<<< HEAD
+                    //std::cout << "Action is def" <<std::endl;
+                    //std::cout << "==============" <<std::endl;
+                    def(cmds.at(1),cmds.at(3),&names);
+=======
+                    std::cout << "Action is def" <<std::endl;
+>>>>>>> origin/master
                     def(cmds.at(1),cmds.at(3),&names);
                 }
                 else{  //error syntax
@@ -565,6 +900,116 @@ void Cmd::run(){
         areaPerimeter.clear();
     }//end while
 
+<<<<<<< HEAD
+=======
+        split(cmd,&cmds);
+        //std::cout << "size is " << cmds.size() << std::endl;
+        if(!cmds.empty()){  //check cmds.at(0)=="-" else continue
+            if(cmds.at(0).compare("-")==0 && cmds.size()>=2 && cmds.size()<=5){
+                //std::cout << "correct syntax" <<std::endl;
+            }
+            else{   //error syntax
+                std::cout << "error syntax" <<std::endl;
+                cmds.clear();
+                continue;
+            }
+
+            if(cmds.at(1).compare("def")==0){
+                if(cmds.at(3).compare("=")==0 && cmds.size()==5){
+                    std::cout << "Action is def" <<std::endl;
+                    def(cmds.at(2),cmds.at(4),&names);
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+                }
+                else{  //error syntax
+
+                    std::cout << "error syntax at def structure" <<std::endl;
+                    //cmds.clear();
+                    //continue;
+                }
+
+            }
+            else if(cmds.at(0).compare("add")==0){
+                    if(cmds.size()==4 && cmds.at(2).compare("to")==0){
+                        //std::cout << "Action is add" <<std::endl;
+                        //std::cout << "==============" <<std::endl;
+                        add(cmds.at(1),cmds.at(3),&names);
+                    }
+                    else{
+                        std::cout << "error syntax at def structure" <<std::endl;
+                    }
+
+            }
+            else if(cmds.at(0).compare("delete")==0){
+                std::cout << "Action is delete" <<std::endl;
+                std::cout << "================" <<std::endl;
+            }
+            else if(cmds.at(0).compare("show")==0){
+                //std::cout << "Action is show" <<std::endl;
+                //std::cout << "==============" <<std::endl;
+                for (std::map<std::string,Media*>::iterator it=names.begin(); it!=names.end(); ++it)  //show run()'s names
+                    std::cout << it->second->getName() << std::endl;
+            }
+            else if(cmds.at(0).compare("save")==0){
+                if(cmds.size()==4 && cmds.at(2).compare("to")==0){
+                    std::cout << "Action is save" <<std::endl;
+                    std::cout << "==============" <<std::endl;
+                    save(cmds.at(1),cmds.at(3),&names);
+                }
+                else{
+                    std::cout << "save ,, but wrong structure " <<std::endl;
+                }
+
+
+            }
+            else if(cmds.at(0).compare("load")==0){
+                std::cout << "Action is load" <<std::endl;
+                std::cout << "==============" <<std::endl;
+            }
+            else{   //area() perimeter()    cmds.at(0)
+                /*for(int i=0;i<cmds.size();i++){
+                    std::cout << "Action is load" <<std::endl;
+                    std::cout << "==============" <<std::endl;
+                    std::cout << cmds.at(i) << std::endl;
+                }*/
+                //std::cout << cmds.at(0) << std::endl;
+                //std::vector<std::string> areaPerimeter;
+                splitPoint(cmds.at(0),&areaPerimeter);
+                /*for(int i=0;i<areaPerimeter.size();i++){    //show
+                    std::cout << "i(" << i <<")"<<areaPerimeter.at(i) << std::endl;
+                }*/
+                if(areaPerimeter.size()<=2){
+
+                    if(names.find(areaPerimeter.at(0))==names.end()){  //not found obj's name
+                        std::cout << areaPerimeter.at(0) <<" doesn't exist "<<std::endl;
+                    }
+                    else{   //found
+                        //std::cout << "prepare to calculate " << areaPerimeter.at(1) << std::endl;
+                        calculate(areaPerimeter.at(0),areaPerimeter.at(1),&names);
+                    }
+
+                }else{
+                    std::cout << "error cmd structure - >" << cmds.at(0) << "   ,should be A.area? or A.perimeter?" << std::endl;
+                }
+
+            }
+        }
+
+<<<<<<< HEAD
+        std::cout << "----------------------------------------------" <<std::endl;
+
+        /*for(int i=0; i<cmds.size(); i++){
+            std::cout << cmds.at(i) <<std::endl;
+        }*/
+        cmds.clear();
+        areaPerimeter.clear();
+    }//end while
+
+=======
+         std::cout << "----------------------------------------------" <<std::endl;
+        cmds.clear();
+    }*/
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+>>>>>>> origin/master
 }
 
 

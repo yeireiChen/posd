@@ -146,11 +146,17 @@ void MediaDirector::concrete(std::string content){
 
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 void MediaDirector::buildComb(std::vector<Media*> *n,MediaBuilder *s){
     s->buildComboMedia();
     for(int i=0;i<n->size();i++){
         s->buildAddComboMedia(n->at(i));
     }
+<<<<<<< HEAD
+=======
 }
 void MediaDirector::buildShpae(std::string content,std::vector<std::string> *n,MediaBuilder* s){    //def a = Triangle(0,0,1,0,1,0)
     //std::cout << "creater is " << content << std::endl;
@@ -173,6 +179,39 @@ void MediaDirector::buildShpae(std::string content,std::vector<std::string> *n,M
             throw s;
         }
 
+=======
+void MediaDirector::buildComb(std::string content,std::vector<Media*> *n,MediaBuilder *s){
+
+>>>>>>> origin/master
+}
+void MediaDirector::buildShpae(std::string content,std::vector<std::string> *n,MediaBuilder* s){    //def a = Triangle(0,0,1,0,1,0)
+    //std::cout << "creater is " << content << std::endl;
+    if (content.compare("Circle")==0 && n->size()==3){
+        //std::cout << "prepare to create Circle" << std::endl;
+        Circle *c = new Circle(atof(n->at(0).c_str()),atof(n->at(1).c_str()),atof(n->at(2).c_str()));
+        s->buildShapeMedia(c);
+    }else if (content.compare("Rectangle")==0 && n->size()==4){
+        //std::cout << "prepare to create Rectangle" << std::endl;
+        Rectangle *c = new Rectangle(atof(n->at(0).c_str()),atof(n->at(1).c_str()),atof(n->at(2).c_str()),atof(n->at(3).c_str()));
+        s->buildShapeMedia(c);
+    }else if(content.compare("Triangle")==0 && n->size()==6){
+<<<<<<< HEAD
+        //std::cout << "prepare to create Traingle" << std::endl;
+        try{
+            //Triangle *c = new Triangle(atof(n->at(0).c_str()),atof(n->at(1).c_str()),atof(n->at(2).c_str()),atof(n->at(3).c_str()),atof(n->at(4).c_str()),atof(n->at(5).c_str()));
+            TriangleC c = TriangleC::create(atof(n->at(0).c_str()),atof(n->at(1).c_str()),atof(n->at(2).c_str()),atof(n->at(3).c_str()),atof(n->at(4).c_str()),atof(n->at(5).c_str()));
+            s->buildShapeMedia(&c);
+        }catch(std::string s){
+            //std::cout << s <<std::endl;
+            throw s;
+        }
+
+=======
+        std::cout << "prepare to create Traingle" << std::endl;
+        Triangle *c = new Triangle(atof(n->at(0).c_str()),atof(n->at(1).c_str()),atof(n->at(2).c_str()),atof(n->at(3).c_str()),atof(n->at(4).c_str()),atof(n->at(5).c_str()));
+        s->buildShapeMedia(c);
+>>>>>>> e9174e45616b41952ca6b74d1a113054fa3fb436
+>>>>>>> origin/master
     }else{
         std::cout << "error type" << std::endl;
     }
