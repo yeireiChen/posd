@@ -1,17 +1,14 @@
-#ifndef TRIANGLE_H
-#define TRIANGLE_H
+#ifndef TRIANGLEC_H
+#define TRIANGLEC_H
 
 #include "Shape.h"
 #include <sstream>
 
-class Triangle :public Shape
+class TriangleC:public Shape
 {
     public:
-        Triangle(double,double,double,double,double,double);
-        virtual ~Triangle();
 
-
-
+        virtual ~TriangleC();
         double area() const ;
         double perimeter() const;
         void showArea() const;
@@ -19,6 +16,8 @@ class Triangle :public Shape
         std::string getShapeN() const;
         std::string getDec() const;
         std::string getFullDec() const;
+        static TriangleC create(double,double,double,double,double,double);
+
 
         bool getSuccess() const;
 
@@ -26,8 +25,9 @@ class Triangle :public Shape
 
     private:
         std::string shapeName;
+        TriangleC(double,double,double,double,double,double);
         double fx,fy,sx,sy,tx,ty,fWidth,sWidth,tWidth;
         bool t;
 };
 
-#endif // TRIANGLE_H
+#endif // TRIANGLEC_H

@@ -37,12 +37,18 @@ void combMedia::add(Media* a){
 
 void combMedia::accept(MediaVisitor* visit){
     visit->visitCombMedia(this,true);
-    for (Media *m: cMedia)
-            m->accept(visit);
+
+    /*for (Media *m: cMedia)    //original cMedia is stack
+            m->accept(visit);*/
+
+    for(int i=0;i<cMedia.size();i++)
+        cMedia.at(i)->accept(visit);
 
     visit->visitCombMedia(this,false);
 
 }
+
+
 
 std::string combMedia::getName() const{
     return name;

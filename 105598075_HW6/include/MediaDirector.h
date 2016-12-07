@@ -15,7 +15,7 @@ class MediaDirector
         virtual ~MediaDirector();
         void setMediaBuilder(std::stack<MediaBuilder*> *mbs);
         void concrete(std::string);
-        void buildComb(std::string,std::vector<Media*>*,MediaBuilder*);
+        void buildComb(std::vector<Media*>*,MediaBuilder*);
         void buildShpae(std::string,std::vector<std::string>*,MediaBuilder*);
 
     protected:
