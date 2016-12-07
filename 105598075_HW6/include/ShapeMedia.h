@@ -14,11 +14,14 @@ class ShapeMedia:public Media
         double perimeter() const;
         void accept(MediaVisitor*);
         Shape* getShape() const;
+        std::string getName() const;
+        void setName(std::string);
 
     protected:
 
     private:
         Shape* shape;
+        std::string name;
 };
 
 #endif // SHAPEMEDIA_H

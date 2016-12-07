@@ -5,6 +5,7 @@ DescriptionVisitor::DescriptionVisitor():dec(""){}
 DescriptionVisitor::~DescriptionVisitor(){}
 
 void DescriptionVisitor::visitShapeMedia(ShapeMedia* a){
+    //std::cout << a->getShape()->getDec() << std::endl;
     dec+=a->getShape()->getDec();
 }
 void DescriptionVisitor::visitCombMedia(combMedia*,bool check){

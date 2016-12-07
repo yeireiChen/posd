@@ -10,7 +10,7 @@ class Triangle :public Shape
         Triangle(double,double,double,double,double,double);
         virtual ~Triangle();
 
-        std::string shapeName;
+
 
         double area() const ;
         double perimeter() const;
@@ -25,6 +25,7 @@ class Triangle :public Shape
     protected:
 
     private:
+        std::string shapeName;
         double fx,fy,sx,sy,tx,ty,fWidth,sWidth,tWidth;
         bool t;
 };

@@ -16,7 +16,7 @@ class Cmd
     protected:
 
     private:
-        std::string cmd;
+        //std::string cmd;
 };
 
 #endif // CMD_H
